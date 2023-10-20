@@ -1,0 +1,14 @@
+micronaut:
+  application:
+    name: micronautguide
+  router:
+    static-resources:
+      default:
+        paths: classpath:META-INF/resources/,classpath:resources/,classpath:static/
+        mapping: /**
+---
+#tag::application[]
+application:
+  max: 50
+    #end::application[]
+---

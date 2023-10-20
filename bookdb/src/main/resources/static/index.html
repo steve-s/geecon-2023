@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        textarea,
+        button {
+            margin-top: 20px;
+        }
+
+        #pyFilterText {
+            width: 80%;
+            max-width: 800px;
+            height: calc(1.2em * 10);
+            resize: vertical; 
+            padding: 10px;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            overflow: auto;
+        }
+
+        table {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            padding: 10px 15px;
+        }
+
+        td {
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<textarea id="pyFilterText">
+def filter(book):
+    return True
+</textarea>
+<button onclick="fetchData()">Fetch Data</button>
+
+<p id="errorMessage" style="color: red; display: none;">An error occurred. Syntax error? Check the exception in the console output.</p>
+
+<table id="booksTable">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>ISBN</th>
+        <th>Genre</th>
+        <th>Author</th>
+        <th>Ranking</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    async function fetchData() {
+        try {
+            pyFilterValue = document.getElementById("pyFilterText").value;
+            pyFilterValue = pyFilterValue.replace(/\n/g, '%0A');
+            const response = await fetch(`http://localhost:8080/books/list?pyFilter=${pyFilterValue}`);
+
+            if (!response.ok) {
+                throw new Error();
+            }
+
+            const data = await response.json();
+
+            document.getElementById("errorMessage").style.display = 'none';
+            document.getElementById("booksTable").style.display = 'table';
+
+            const tableBody = document.getElementById("booksTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = '';
+
+            for (let i = 0; i < Math.min(10, data.length); i++) {
+                let newRow = tableBody.insertRow();
+                newRow.insertCell(0).innerText = data[i].name;
+                newRow.insertCell(1).innerText = data[i].isbn;
+                newRow.insertCell(2).innerText = data[i].genre;
+                newRow.insertCell(3).innerText = data[i].author;
+                newRow.insertCell(4).innerText = data[i].ranking;
+            }
+        } catch (error) {
+            document.getElementById("booksTable").style.display = 'none';
+            document.getElementById("errorMessage").style.display = 'block';
+        }
+    }
+    fetchData();
+</script>
+
+<p>Example of more advanced filter that you can try:</p>
+<pre>
+s = set()
+def filter(x):
+    if x.name in s:
+        return False
+    s.add(x.name)
+    return x.name.startswith("T") and not x.name.startswith("The")
+</pre>
+
+</body>
+
+</html>

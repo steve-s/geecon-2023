@@ -1,0 +1,97 @@
+package example.micronaut;
+
+import example.micronaut.domain.Book;
+import io.micronaut.context.annotation.Bean;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
+@Bean
+public class BooksRepositoryInMemory implements BooksRepository {
+    @Override
+    public Stream<Book> findAll() {
+        return BOOKS.stream();
+    }
+
+    private static final List<Book> BOOKS = List.of(new Book("9780451450524", "The Hobbit", "J.R.R. Tolkien", "Fantasy", 1),
+            new Book("9780439064866", "Harry Potter and the Chamber of Secrets", "J.K. Rowling", "Fantasy", 2),
+            new Book("9780307269980", "The Girl with the Dragon Tattoo", "Stieg Larsson", "Mystery", 3),
+            new Book("9780316769174", "The Catcher in the Rye", "J.D. Salinger", "Fiction", 4),
+            new Book("9780312861872", "Foundation", "Isaac Asimov", "Science Fiction", 26),
+            new Book("9780345803487", "Fifty Shades of Grey", "E.L. James", "Romance", 27),
+            new Book("9780671021009", "Angels & Demons", "Dan Brown", "Mystery", 28),
+            new Book("9780743227445", "Memoirs of a Geisha", "Arthur Golden", "Historical", 29),
+            new Book("9780452282155", "The Road", "Cormac McCarthy", "Dystopian", 30),
+            new Book("9780765300361", "Dune", "Frank Herbert", "Science Fiction", 31),
+            new Book("9780765373864", "Ender's Game", "Orson Scott Card", "Science Fiction", 32),
+            new Book("9780345538376", "Game of Thrones", "George R.R. Martin", "Fantasy", 33),
+            new Book("9780345370778", "Jurassic Park", "Michael Crichton", "Science Fiction", 34),
+            new Book("9780451468833", "The Shining", "Stephen King", "Horror", 35),
+            new Book("9780451163967", "It", "Stephen King", "Horror", 36),
+            new Book("9780062024022", "Divergent", "Veronica Roth", "Dystopian", 37),
+            new Book("9780451190575", "Misery", "Stephen King", "Horror", 38),
+            new Book("9780312995423", "The Da Vinci Code", "Dan Brown", "Mystery", 39),
+            new Book("9780743454529", "Life of Pi", "Yann Martel", "Adventure", 40),
+            new Book("9780804172448", "Inferno", "Dan Brown", "Mystery", 41),
+            new Book("9780060838652", "The Chronicles of Narnia: The Lion, The Witch and The Wardrobe", "C.S. Lewis", "Fantasy", 42),
+            new Book("9780316015844", "Twilight", "Stephenie Meyer", "Fantasy", 43),
+            new Book("9781400079170", "The Book Thief", "Markus Zusak", "Historical", 44),
+            new Book("9780061122415", "To Kill a Mockingbird", "Harper Lee", "Historical", 45),
+            new Book("9780060531041", "The Alchemist", "Paulo Coelho", "Fantasy", 46),
+            new Book("9780385490818", "The Poisonwood Bible", "Barbara Kingsolver", "Historical", 47),
+            new Book("9780812550702", "Ender's Game", "Orson Scott Card", "Science Fiction", 48),
+            new Book("9780553380163", "The Wind-Up Bird Chronicle", "Haruki Murakami", "Fiction", 49),
+            new Book("9780316769488", "On the Road", "Jack Kerouac", "Fiction", 50),
+            new Book("9780451450524", "The Hobbit", "J.R.R. Tolkien", "Fantasy", 1),
+            new Book("9780439064866", "Harry Potter and the Chamber of Secrets", "J.K. Rowling", "Fantasy", 2),
+            new Book("9780307269980", "The Girl with the Dragon Tattoo", "Stieg Larsson", "Mystery", 3),
+            new Book("9780316769174", "The Catcher in the Rye", "J.D. Salinger", "Fiction", 4),
+            new Book("9780743297332", "The Great Gatsby", "F. Scott Fitzgerald", "Fiction", 5),
+            new Book("9780451191152", "1984", "George Orwell", "Dystopian", 6),
+            new Book("9780545010221", "Harry Potter and the Deathly Hallows", "J.K. Rowling", "Fantasy", 7),
+            new Book("9781400032716", "The Kite Runner", "Khaled Hosseini", "Historical", 8),
+            new Book("9780743264747", "The Secret Life of Bees", "Sue Monk Kidd", "Fiction", 9),
+            new Book("9780140283334", "Brave New World", "Aldous Huxley", "Dystopian", 10),
+            new Book("9780452284241", "The Lovely Bones", "Alice Sebold", "Fiction", 11),
+            new Book("9780684830490", "A Time to Kill", "John Grisham", "Legal Thriller", 12),
+            new Book("9780446677455", "The Notebook", "Nicholas Sparks", "Romance", 13),
+            new Book("9780618643359", "The Fellowship of the Ring", "J.R.R. Tolkien", "Fantasy", 14),
+            new Book("9780316044615", "Eclipse", "Stephenie Meyer", "Fantasy", 15),
+            new Book("9780316769488", "On the Road", "Jack Kerouac", "Fiction", 16),
+            new Book("9780375701429", "Slaughterhouse-Five", "Kurt Vonnegut", "Science Fiction", 17),
+            new Book("9780446310789", "To Kill a Mockingbird", "Harper Lee", "Historical", 18),
+            new Book("9780451166896", "Carrie", "Stephen King", "Horror", 19),
+            new Book("9780451524935", "Moby Dick", "Herman Melville", "Adventure", 20),
+            new Book("9780345418265", "The Old Man and the Sea", "Ernest Hemingway", "Fiction", 21),
+            new Book("9780679783268", "Pride and Prejudice", "Jane Austen", "Romance", 22),
+            new Book("9780312861872", "Foundation", "Isaac Asimov", "Science Fiction", 23),
+            new Book("9780345803487", "Fifty Shades of Grey", "E.L. James", "Romance", 24),
+            new Book("9780671021009", "Angels & Demons", "Dan Brown", "Mystery", 25),
+            new Book("9780743227445", "Memoirs of a Geisha", "Arthur Golden", "Historical", 26),
+            new Book("9780452282155", "The Road", "Cormac McCarthy", "Dystopian", 27),
+            new Book("9780765300361", "Dune", "Frank Herbert", "Science Fiction", 28),
+            new Book("9780765373864", "Ender's Game", "Orson Scott Card", "Science Fiction", 29),
+            new Book("9780345538376", "Game of Thrones", "George R.R. Martin", "Fantasy", 30),
+            new Book("9780345370778", "Jurassic Park", "Michael Crichton", "Science Fiction", 31),
+            new Book("9780451468833", "The Shining", "Stephen King", "Horror", 32),
+            new Book("9780451163967", "It", "Stephen King", "Horror", 33),
+            new Book("9780062024022", "Divergent", "Veronica Roth", "Dystopian", 34),
+            new Book("9780451190575", "Misery", "Stephen King", "Horror", 35),
+            new Book("9780312995423", "The Da Vinci Code", "Dan Brown", "Mystery", 36),
+            new Book("9780743454529", "Life of Pi", "Yann Martel", "Adventure", 37),
+            new Book("9780804172448", "Inferno", "Dan Brown", "Mystery", 38),
+            new Book("9780060838652", "The Chronicles of Narnia: The Lion, The Witch and The Wardrobe", "C.S. Lewis", "Fantasy", 39),
+            new Book("9780316015844", "Twilight", "Stephenie Meyer", "Fantasy", 40),
+            new Book("9781400079170", "The Book Thief", "Markus Zusak", "Historical", 41),
+            new Book("9780061122415", "To Kill a Mockingbird", "Harper Lee", "Historical", 42),
+            new Book("9780060531041", "The Alchemist", "Paulo Coelho", "Fantasy", 43),
+            new Book("9780385490818", "The Poisonwood Bible", "Barbara Kingsolver", "Historical", 44),
+            new Book("9780812550702", "Ender's Game", "Orson Scott Card", "Science Fiction", 45),
+            new Book("9780553380163", "The Wind-Up Bird Chronicle", "Haruki Murakami", "Fiction", 46),
+            new Book("9780440414803", "Holes", "Louis Sachar", "Fiction", 47),
+            new Book("9780316038379", "The Maze Runner", "James Dashner", "Dystopian", 48),
+            new Book("9780316067928", "The Host", "Stephenie Meyer", "Science Fiction", 49),
+            new Book("9780316067328", "Effective Java", "Joshua Bloch", "Non-fiction", 99),
+            new Book("9780440418320", "Because of Winn-Dixie", "Kate DiCamillo", "Fiction", 50));
+}
